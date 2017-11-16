@@ -8,7 +8,7 @@ This app will be used to collect data for research by International Alert on pub
 
 We currently do this analysis by hand and need a quick and robust tool to replace.
 
-The page we will initially scrapte is: https://www.facebook.com/unheardvoices.intalert/
+The page we will initially scrape is: https://www.facebook.com/unheardvoices.intalert/
 
 ## Component: Scaper
 Everytime the scraper runs it will incrementally append new posts and comments in its database. 
