@@ -30,4 +30,6 @@ Ideally, this app will be built with:
 ## Potential further work
 - Angular2 (or alternative) UI
 - CSV output alternative to JSON endpoints
+- Functions easily customisable to scrape multiple pages
+
 
