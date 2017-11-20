@@ -1,7 +1,7 @@
 # facebook-page-scaper
 This application scrapes the posts and comments on a given Facebook page. It incremenally updates its record of the page's activity and identifies deleted posts or comments.
 
-Below are further details of the two components of the app. 
+Below are further details of the three components of the app. 
 
 ## Context
 This app will be used to collect data for research by International Alert on public Facebook pages that we host in the Eurasia region. We have a strict and well-publicised policy of removing posts/comments that are derogatory or abusive towards any ethnic group and we remove these as part of our moderation process. However, it is these inappropriate comments that form the most important part of our research. Understanding the language used in regions of conflict / post-conflict informs our strategy for reducing any intra-community tensions.
@@ -17,11 +17,15 @@ If a post or comment has been deleted/hidden since a previous scrape, the record
 
 ## Component: API endpoints
 
-`GET 127.0.0.1:3000/page` 
+eg. `GET 127.0.0.1:3000/api/page` 
 Outputs a single JSON object that describes all posts and nested comments.
 
-`GET 127.0.0.1:3000/page/deleted_comments`
+eg. `GET 127.0.0.1:3000/api/page/deleted_comments`
 Outputs a JSON list of all deleted comments. Each deleted comment includes the parent post (and parent comments, if the deleted comments is a reply to a comment)
+
+## Component: Admin UI
+eg. `GET 127.0.0.1:3000/`
+A single page app to display data provided by the two API endpoints
 
 ## Desired technology stack
 Ideally, this app will be built with:
@@ -34,4 +38,5 @@ Ideally, this app will be built with:
 - CSV output alternative to JSON endpoints
 - Functions easily customisable to scrape multiple pages
 
-
+## Licensing
+- All code will be published under a (Creative Commons Attribution 4.0 International License)[https://creativecommons.org/licenses/by/4.0/]
