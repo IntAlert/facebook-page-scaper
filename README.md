@@ -39,4 +39,4 @@ Ideally, this app will be built with:
 - Functions easily customisable to scrape multiple pages
 
 ## Licensing
-- All code will be published under a (Creative Commons Attribution 4.0 International License)[https://creativecommons.org/licenses/by/4.0/]
+- All code will be published under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
