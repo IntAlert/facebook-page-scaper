@@ -4,7 +4,9 @@ This application scrapes the posts and comments on a given Facebook page. It inc
 Below are further details of the three components of the app. 
 
 ## Context
-This app will be used to collect data for research by International Alert on public Facebook pages that we host in the Eurasia region. We have a strict and well-publicised policy of removing posts/comments that are derogatory or abusive towards any ethnic group and we remove these as part of our moderation process. However, it is these inappropriate comments that form the most important part of our research. Understanding the language used in regions of conflict / post-conflict informs our strategy for reducing any intra-community tensions.
+This app will be used to collect data for research by International Alert on public Facebook pages that we host in the Eurasia region. We have a strict and well-publicised policy of removing posts/comments that are derogatory or abusive towards any ethnic group and we remove these as part of our moderation process. 
+
+These inappropriate comments form the most important part of our research. Understanding the language used in regions of conflict / post-conflict informs our strategy for reducing any intra-community tensions.
 
 We currently do this analysis by hand and need a quick and robust tool to replace.
 
@@ -39,4 +41,4 @@ Ideally, this app will be built with:
 - Functions easily customisable to scrape multiple pages
 
 ## Licensing
-- All code will be published under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
+- All code will be published under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
