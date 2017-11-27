@@ -40,5 +40,9 @@ Ideally, this app will be built with:
 - CSV output alternative to JSON endpoints
 - Functions easily customisable to scrape multiple pages
 
+## Development principles
+All DFID supply partners who manage aid programmes with a digital element must adhere to the global Principles for Digital Development https://digitalprinciples.org/ , which sets out best practice in technology-enabled programmes
+
 ## Licensing
 - All code will be published under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
+
