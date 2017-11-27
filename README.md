@@ -1,5 +1,5 @@
 # facebook-page-scaper
-This application scrapes the posts and comments on a given Facebook page. It incremenally updates its record of the page's activity and identifies deleted posts or comments.
+This application scrapes the posts and comments on a given Facebook page. It incrementally updates its record of the page's activity and identifies deleted posts or comments.
 
 Below are further details of the three components of the app. 
 
