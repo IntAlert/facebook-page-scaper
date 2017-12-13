@@ -1,15 +1,5 @@
-var {FB, FacebookApiException} = require('fb');
 
-const facebookConfig = require('../../../config/facebook')
-
-console.log(facebookConfig);
-
-FB.options({
-  version: 'v2.4',
-  appId: facebookConfig.appId, 
-  appSecret: facebookConfig.appSecret, 
-});
-FB.setAccessToken(facebookConfig.accessToken);
+const FBClient = require('../../../shared/FBClient')
 
 const posts = [];
 
@@ -21,7 +11,7 @@ const getPostsPaginated = async (after_cursor) => {
 	}
 	
 	return new Promise((resolve, reject) => {
-		FB.api(endpoint, (res) => {
+		FBClient.api(endpoint, (res) => {
 			if(!res || res.error) {
 				reject(res.error)
 			}
