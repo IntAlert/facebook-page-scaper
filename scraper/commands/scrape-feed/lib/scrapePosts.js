@@ -1,4 +1,3 @@
-
 const FBClient = require('../../../shared/FBClient')
 
 const posts = [];

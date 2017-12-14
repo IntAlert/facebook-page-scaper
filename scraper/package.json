@@ -14,7 +14,8 @@
   },
   "homepage": "https://github.com/motdotla/node-lambda-template",
   "scripts": {
-    "scrape-feed": "node-lambda run -j events/scrape-feed.json"
+    "scrape-feed": "node-lambda run -j events/scrape-feed.json",
+    "scrape-post-comments": "node-lambda run -j events/scrape-post-comments.json"
   },
   "devDependencies": {
     "babel-preset-latest": "^6.24.1",

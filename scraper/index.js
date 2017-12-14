@@ -1,5 +1,7 @@
 require('dotenv').config()
+var models  = require('./models');
 const scrapeFeed = require('./commands/scrape-feed/scrape-feed');
+const scrapePostComments = require('./commands/scrape-post-comments/scrape-post-comments');
 
 // For development/testing purposes
 exports.handler = async (event, context, callback) => {
@@ -16,15 +18,22 @@ exports.handler = async (event, context, callback) => {
       case 'scrape-feed':
         result = await scrapeFeed();
         break;
+      case 'scrape-post-comments':
+        result = await scrapePostComments();
+        break;
     
       default:
         throw("Unknown Command: " + event.command)
         break;
     }
 
+    // close the database connection
+    models.sequelize.close();
+    return results;
+
   } catch (error) {
-    callback(error);
     console.error(error);
+    callback(error);
   }
 
 

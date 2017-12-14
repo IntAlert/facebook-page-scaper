@@ -14,12 +14,7 @@ const savePosts = (posts) => {
 		}
 	})
 
-	return Promise.all(promises).then(results => {
-
-		// close the database connection
-		models.sequelize.close();
-		return results;
-	});
+	return Promise.all(promises)
 }
 
 const savePost = (post) => {
