@@ -20,7 +20,9 @@ const savePosts = (posts) => {
 const savePost = (post) => {
 	
 	return models.Post.findOrCreate({
-		where: {fb_id: post.id}, 
+		where: {
+			fb_id: post.id
+		}, 
 		defaults: {
 			fb_id: post.id,
 			fb_message: post.message,

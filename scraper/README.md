@@ -21,4 +21,14 @@ Event JSON:
 4. Check for deleted for each post and comment
 
 
+TODO
+====
 Likes and reactions?
+parent id of comments
+comments of comments
+deleted comments
+deleted posts
+
+
+
+
