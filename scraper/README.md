@@ -3,7 +3,9 @@
 ## Scrape all posts in page/feed including pagination
 
 ### Testing locally
-`npm run scrape-feed`
+- `npm run scrape-feed`
+- `npm run scrape-post-comments`
+- `npm run scrape-comment-subcomments`
 
 ### Running live
 Event JSON:

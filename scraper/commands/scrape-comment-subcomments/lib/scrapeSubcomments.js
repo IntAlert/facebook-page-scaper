@@ -9,7 +9,7 @@ const getCommentsPaginated = async (comment_id, after_cursor) => {
 	if(after_cursor) {
 		endpoint += '?after=' + after_cursor;
 	}
-	
+
 	return new Promise((resolve, reject) => {
 		FBClient.api(endpoint, (res) => {
 			if(!res || res.error) {
@@ -20,16 +20,20 @@ const getCommentsPaginated = async (comment_id, after_cursor) => {
 	})
 }
 
-const scrapeSubcommentsByCommentId = async(comment_id) => {
+const scrapeSubcommentsByCommentId = async(parent_comment_fb_id) => {
 	let after_cursor;
 	let comments = [];
 	do {
-		let results = await getCommentsPaginated(comment_id, after_cursor);
+		let results = await getCommentsPaginated(parent_comment_fb_id, after_cursor);
 		comments = comments.concat(results.data);
 		after_cursor = results.paging ? results.paging.cursors.after : false;
 	} while (after_cursor)
 
-	return comments;
+	// add parent_comment_fb_id to each comment
+	return comments.map(c => {
+		c.parent_comment_fb_id = parent_comment_fb_id
+		return c
+	})
 }
 
 const scrapeSubcomments = async(comments) => {
@@ -41,6 +45,7 @@ const scrapeSubcomments = async(comments) => {
 		subcomments = subcomments.concat(subcomments);
 	}
 
+	console.log(subcomments);
 	return subcomments;
 }
 

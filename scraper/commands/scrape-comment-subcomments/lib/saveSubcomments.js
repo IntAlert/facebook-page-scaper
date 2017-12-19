@@ -4,6 +4,10 @@ const saveComments = (comments) => {
 	const promises = [];
 
 	comments.forEach(comment => {
+
+
+		console.log('alan');
+		console.log(comment);
 		try {
 			promises.push(saveComment(comment));
 		} catch (error) {
@@ -24,7 +28,8 @@ const saveComment = (comment) => {
 		defaults: {
 			fb_id: comment.id,
 			fb_message: comment.message,
-			fb_created_time: comment.created_time
+			fb_created_time: comment.created_time,
+			parent_comment_fb_id: comment.parent_comment_fb_id
 		}
 	})
 	.spread((record, created) => {

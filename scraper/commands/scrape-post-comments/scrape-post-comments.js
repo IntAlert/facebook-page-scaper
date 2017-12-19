@@ -4,7 +4,7 @@ const saveComments  = require('./lib/saveComments');
 const markPostsAsScraped = require('./lib/markPostsAsScraped');
 
 module.exports = async () => {
-	let posts = await getPosts(10);
+	let posts = await getPosts(100);
 	let comments = await scrapeComments(posts);
 	let records = await saveComments(comments);
 	console.log('Posts length: ' + posts.length);

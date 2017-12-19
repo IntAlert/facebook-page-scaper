@@ -34,7 +34,7 @@ exports.handler = async (event, context, callback) => {
 
     // close the database connection
     models.sequelize.close();
-    return results;
+    return result;
 
   } catch (error) {
     console.error(error);
