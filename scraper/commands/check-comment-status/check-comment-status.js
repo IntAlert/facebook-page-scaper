@@ -3,7 +3,7 @@ const scrapeStatuses  = require('./lib/scrapeStatuses');
 const saveCommentStatuses  = require('./lib/saveCommentStatuses');
 
 module.exports = async () => {
-	let comments = await getComments(100);
+	let comments = await getComments(1);
 	let statuses = await scrapeStatuses(comments);
 	let records = await saveCommentStatuses(statuses);
 	console.log('Comments length: ' + comments.length);

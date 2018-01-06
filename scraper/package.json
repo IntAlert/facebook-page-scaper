@@ -16,7 +16,9 @@
   "scripts": {
     "scrape-feed": "node-lambda run -j events/scrape-feed.json",
     "scrape-post-comments": "node-lambda run -j events/scrape-post-comments.json",
-    "scrape-comment-subcomments": "node-lambda run -j events/scrape-comment-subcomments.json"
+    "scrape-comment-subcomments": "node-lambda run -j events/scrape-comment-subcomments.json",
+    "check-comment-status": "node-lambda run -j events/check-comment-status.json",
+    "get-page-access-token": "node-lambda run -j events/get-page-access-token.json"
   },
   "devDependencies": {
     "babel-preset-latest": "^6.24.1",

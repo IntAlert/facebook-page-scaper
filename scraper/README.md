@@ -15,13 +15,14 @@ Event JSON:
 }
 ```
 
-
-
-
 2. Scrape each post/comments including pagination
 3. Scrape each comment/comments including pagination
 4. Check for deleted for each post and comment
 
+### Access Tokens
+Need to have page_access_token plugged in via .env
+app_token only needed if we want to generate the page_access_token 
+You need a long-live access token in .env
 
 TODO
 ====
