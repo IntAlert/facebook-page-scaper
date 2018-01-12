@@ -4,7 +4,7 @@ const getPage = async () => {
 	let page = await getPageNotScraped();
 
 	if (!page) {
-		let page = await getPageLeastRecentlyScraped();
+		page = await getPageLeastRecentlyScraped();
 	}
 
 	return page;

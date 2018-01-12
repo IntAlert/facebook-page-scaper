@@ -2,7 +2,7 @@ const FBClient = require('../../../shared/FBClient')
 
 const posts = [];
 
-const getPostsPaginated = async (page, after_cursor) => {
+const scrapePostsPaginated = async (page, after_cursor) => {
 	let endpoint = `${page.fb_id}/feed`;
 
 	if(after_cursor) {
@@ -23,11 +23,11 @@ const getPostsPaginated = async (page, after_cursor) => {
 	})
 }
 
-const getPosts = async(page) => {
+const scrapePosts = async(page) => {
 	let after_cursor;
 	let posts = [];
 	do {
-		let results = await getPostsPaginated(page, after_cursor);
+		let results = await scrapePostsPaginated(page, after_cursor);
 		posts = posts.concat(results.data);
 		after_cursor = results.paging ? results.paging.cursors.after : false;
 	} while (after_cursor)
@@ -35,4 +35,4 @@ const getPosts = async(page) => {
 	return posts;
 }
 
-module.exports = getPosts;
+module.exports = scrapePosts;

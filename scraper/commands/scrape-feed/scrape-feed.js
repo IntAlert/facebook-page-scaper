@@ -5,6 +5,10 @@ const markPageAsScraped  = require('./lib/markPageAsScraped');
 
 module.exports = async () => {
 	let page = await getPage();
+
+	// console.log(page);
+
+
 	let posts = await scrapePosts(page);
 	let records = await savePosts(posts);
 	await markPageAsScraped(page);
