@@ -24,18 +24,10 @@
 
 
 TODO:
-scrape comment statuses
-- add reaction summary x 2 to comments table
-- paginate reactions
-- save reactions
-
-Comments and subcomments
-- add user details
-- scrape post statuses?
-
-- for posts, comments, subcomments, reactions handle 404 gracefully
+- ensure access token is not expired when detecting deletions
+- check deletion for comments
 - add tagging
 - API: all posts
-- API: 
+- block pointless subcomment subcomment scraping
 
 

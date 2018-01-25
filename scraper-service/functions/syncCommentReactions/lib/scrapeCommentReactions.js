@@ -50,9 +50,15 @@ const scrapeCommentReactions = async(comments) => {
 	let all_summaries = [];
 
 	for(let comment of comments) {
-		let reactions = await scrapeReactionsByComment(comment);
-		all_reactions = all_reactions.concat(reactions.all);
-		all_summaries.push(reactions.summary);
+		try {
+			let reactions = await scrapeReactionsByComment(comment);
+			all_reactions = all_reactions.concat(reactions.all);
+			all_summaries.push(reactions.summary);
+		} catch (error) {
+			// if see an error here, we just ignore it
+			// the comment has probably been deleted
+			console.log("Probable Deleted Comment Detected: " + comment.id);
+		}
 	}
 
 	return {

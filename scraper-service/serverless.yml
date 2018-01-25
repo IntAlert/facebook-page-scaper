@@ -40,3 +40,6 @@ functions:
   
   syncPostReactions:
     handler: functions/syncPostReactions/syncPostReactions.handler
+
+  syncPostDeletions:
+    handler: functions/syncPostDeletions/syncPostDeletions.handler

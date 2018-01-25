@@ -46,8 +46,14 @@ const scrapeSubcomments = async(comments) => {
 	let subcomments = [];
 
 	for(let comment of comments) {
-		let subcommentsPage = await scrapeSubcommentsByComment(comment);
-		subcomments = subcomments.concat(subcommentsPage);
+		try {
+			let subcommentsPage = await scrapeSubcommentsByComment(comment);
+			subcomments = subcomments.concat(subcommentsPage);
+		} catch (error) {
+			// if see an error here, we just ignore it
+			// the comment has probably been deleted
+			console.log("Probable Deleted Comment Detected: " + comment.id);
+		}
 	}
 
 	return subcomments;

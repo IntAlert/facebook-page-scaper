@@ -6,9 +6,12 @@ module.exports = function(sequelize, DataTypes) {
     fb_created_time: DataTypes.DATE,
     fb_message: DataTypes.TEXT,
     fb_story: DataTypes.TEXT,
+    deleted: DataTypes.BOOLEAN,
     comments_last_scraped: DataTypes.DATE,
     reactions_last_scraped: DataTypes.DATE,
-    deleted: DataTypes.BOOLEAN,
+    deletion_status_last_scraped: DataTypes.DATE,
+    deletion_detected: DataTypes.DATE,
+    
 
     fb_reactions_total_count: DataTypes.INTEGER,
     fb_reactions_summary_type: DataTypes.STRING,

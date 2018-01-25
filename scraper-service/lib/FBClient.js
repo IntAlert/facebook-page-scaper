@@ -7,6 +7,5 @@ FB.options({
   appId: facebookConfig.appId, 
   appSecret: facebookConfig.appSecret, 
 });
-// FB.setAccessToken(facebookConfig.accessToken);
 
 module.exports = FB;

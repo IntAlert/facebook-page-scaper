@@ -9,7 +9,9 @@
     "syncPostComments": "SLS_DEBUG=* serverless invoke local --function syncPostComments -s dev",
     "syncCommentSubcomments": "SLS_DEBUG=* serverless invoke local --function syncCommentSubcomments -s dev",
     "syncCommentReactions": "SLS_DEBUG=* serverless invoke local --function syncCommentReactions -s dev",
-    "syncPostReactions": "SLS_DEBUG=* serverless invoke local --function syncPostReactions -s dev"
+    "syncPostReactions": "SLS_DEBUG=* serverless invoke local --function syncPostReactions -s dev",
+    "syncPostDeletions": "SLS_DEBUG=* serverless invoke local --function syncPostDeletions -s dev"
+    
   },
   "author": "",
   "license": "MIT",

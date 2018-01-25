@@ -23,7 +23,7 @@ const scrapePostsPaginated = async (page, after_cursor) => {
 	})
 }
 
-const scrapePosts = async(page) => {
+const scrapePostsByPage = async(page) => {
 	let after_cursor;
 	let posts = [];
 	do {
@@ -33,6 +33,18 @@ const scrapePosts = async(page) => {
 	} while (after_cursor)
 
 	return posts;
+}
+
+const scrapePosts = async(page) => {
+	try {
+		return await scrapePostsByPage(page);
+	} catch (error) {
+		// if see an error here, we just ignore it
+		// we no longer have access to this page
+		console.log("Page access error: Page ID " + page.fb_id);
+		console.error(error);
+		return [];
+	}
 }
 
 module.exports = scrapePosts;

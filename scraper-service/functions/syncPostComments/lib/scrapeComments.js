@@ -47,8 +47,14 @@ const scrapeComments = async(posts) => {
 	let comments = [];
 
 	for(let post of posts) {
-		let post_comments = await scrapeCommentsByPost(post);
-		comments = comments.concat(post_comments);
+		try {
+			let post_comments = await scrapeCommentsByPost(post);
+			comments = comments.concat(post_comments);
+		} catch (error) {
+			// if see an error here, we just ignore it
+			// the comment has probably been deleted
+			console.log("Probable Deleted Post Detected: " + post.id);
+		}
 	}
 
 	return comments;
