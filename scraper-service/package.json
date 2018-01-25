@@ -1,0 +1,38 @@
+{
+  "name": "babel-serverless",
+  "version": "1.1.0",
+  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
+  "main": "handler.js",
+  "scripts": {
+    "test": "jest",
+    "syncFeed": "SLS_DEBUG=* serverless invoke local --function syncFeed -s dev",
+    "syncPostComments": "SLS_DEBUG=* serverless invoke local --function syncPostComments -s dev",
+    "syncCommentSubcomments": "SLS_DEBUG=* serverless invoke local --function syncCommentSubcomments -s dev",
+    "syncCommentReactions": "SLS_DEBUG=* serverless invoke local --function syncCommentReactions -s dev",
+    "syncPostReactions": "SLS_DEBUG=* serverless invoke local --function syncPostReactions -s dev"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-source-map-support": "^1.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "serverless-webpack": "^4.2.0",
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "alert-facebook-scraper-shared-models": "file:///Users/asmt3/Sites/clients/intalert/facebook-page-scaper/shared-models",
+    "babel-runtime": "^6.26.0",
+    "fb": "^2.0.0",
+    "jest": "^21.2.1",
+    "source-map-support": "^0.4.18"
+  }
+}
