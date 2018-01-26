@@ -4,10 +4,11 @@ const comments = [];
 
 
 const getCommentsPaginated = async (parent_post, after_cursor) => {
-	let endpoint = `${parent_post.fb_id}/comments`;
+	let endpoint = `${parent_post.fb_id}/comments?fields=is_hidden,created_time,from,message`;
+	// let endpoint = `${parent_post.fb_id}/comments`;
 
 	if(after_cursor) {
-		endpoint += '?after=' + after_cursor;
+		endpoint += '&after=' + after_cursor;
 	}
 	
 	return new Promise((resolve, reject) => {

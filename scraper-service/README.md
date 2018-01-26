@@ -24,10 +24,9 @@
 
 
 TODO:
+- add user a data to comments
 - ensure access token is not expired when detecting deletions
-- check deletion for comments
 - add tagging
 - API: all posts
-- block pointless subcomment subcomment scraping
 
 

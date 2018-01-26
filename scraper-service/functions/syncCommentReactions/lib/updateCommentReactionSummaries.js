@@ -2,7 +2,6 @@ const models = require('alert-facebook-scraper-shared-models');
 
 
 const updateCommentReactionSummaries = async (summaries) => {
-	console.log(summaries)
 	let records = [];
 	for (let summary of summaries) {
 		console.log(summary)

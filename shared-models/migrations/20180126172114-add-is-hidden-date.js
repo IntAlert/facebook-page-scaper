@@ -2,10 +2,10 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.addColumn('Posts', 'visibility_last_scraped', {
+    queryInterface.addColumn('Posts', 'is_hidden_detected', {
       type: Sequelize.DATE
     })
-    queryInterface.addColumn('Comments', 'visibility_last_scraped', {
+    queryInterface.addColumn('Comments', 'is_hidden_detected', {
       type: Sequelize.DATE
     })
   },

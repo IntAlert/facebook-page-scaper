@@ -12,15 +12,23 @@ module.exports = (sequelize, DataTypes) => {
     
     fb_message: DataTypes.TEXT,
     fb_created_time: DataTypes.DATE,
+
+    is_hidden: DataTypes.BOOLEAN,
+    is_hidden_detected: DataTypes.DATE,
+
     deleted: DataTypes.BOOLEAN,
+    visibility_last_scraped: DataTypes.DATE,
+    deletion_detected: DataTypes.DATE,
+
+    fb_user_fullname: DataTypes.STRING,
+    fb_user_id: DataTypes.STRING,
 
     fb_reactions_total_count: DataTypes.INTEGER,
     fb_reactions_summary_type: DataTypes.STRING,
 
     comments_last_scraped: DataTypes.DATE,
     reactions_last_scraped: DataTypes.DATE,
-    deletion_status_last_scraped: DataTypes.DATE,
-    deletion_detected: DataTypes.DATE,
+    
 
   }, {
     classMethods: {
@@ -32,7 +40,15 @@ module.exports = (sequelize, DataTypes) => {
 
   // Associations
   Comment.associate = function (models) {
+
+    // Comment belongs to Page (useful for fetching page access token)
     Comment.belongsTo(models.Page, {foreignKey: 'parent_page_id', targetKey: 'id'});
+
+    // Comment has subcomments
+    Comment.hasMany(models.Comment, {foreignKey: 'parent_comment_id', sourceKey: 'id'});
+
+    // Comment has reactions
+    Comment.hasMany(models.comment_reactions, {foreignKey: 'comment_id', sourceKey: 'id'});
   };
   
   return Comment;

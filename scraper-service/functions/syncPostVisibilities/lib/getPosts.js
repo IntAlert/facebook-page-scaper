@@ -16,7 +16,7 @@ const getPostsNotScraped = async (limit) => {
 
 	return models.Post.findAll({
 		where: {
-			deletion_status_last_scraped: null,
+			visibility_last_scraped: null,
 			deleted: false
 		},
 		limit,
@@ -32,9 +32,9 @@ const getPostsLeastRecentlyScraped = async (limit) => {
 	return models.Post.findAll({
 		where: {
 			deleted: false,
-			deletion_status_last_scraped: {$ne: null},
+			visibility_last_scraped: {$ne: null},
 		},
-		order: [['deletion_status_last_scraped', 'ASC']],
+		order: [['visibility_last_scraped', 'ASC']],
 		limit,
 		include: [{
 			model: models.Page,

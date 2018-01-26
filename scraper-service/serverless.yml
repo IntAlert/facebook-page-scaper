@@ -16,30 +16,51 @@ provider:
   runtime: nodejs6.10
   stage: prod
   region: eu-west-1
+  timeout: 120
   environment: ${file(./env.json):${opt:stage}}
 
 functions:
-  # hello:
-  #   handler: handler.hello
-  #   events:
-  #     - http:
-  #         path: hello
-  #         method: get
 
+## SCRAPER
   syncFeed:
     handler: functions/syncFeed/syncFeed.handler
+    events:
+      - schedule: rate(15 minutes)
 
   syncPostComments:
     handler: functions/syncPostComments/syncPostComments.handler
+    events:
+      - schedule: rate(5 minutes)
 
   syncCommentSubcomments:
     handler: functions/syncCommentSubcomments/syncCommentSubcomments.handler
+    events:
+      - schedule: rate(5 minutes)
 
   syncCommentReactions:
     handler: functions/syncCommentReactions/syncCommentReactions.handler
+    events:
+      - schedule: rate(5 minutes)
   
   syncPostReactions:
     handler: functions/syncPostReactions/syncPostReactions.handler
+    events:
+      - schedule: rate(5 minutes)
 
-  syncPostDeletions:
-    handler: functions/syncPostDeletions/syncPostDeletions.handler
+  syncPostVisibilities:
+    handler: functions/syncPostVisibilities/syncPostVisibilities.handler
+    events:
+      - schedule: rate(5 minutes)
+  
+  syncCommentVisibilities:
+    handler: functions/syncCommentVisibilities/syncCommentVisibilities.handler
+    events:
+      - schedule: rate(5 minutes)
+
+## API
+  getFeed:
+    handler: functions/api/getFeed.handler
+    events:
+      - http:
+          path: api/getFeed
+          method: get

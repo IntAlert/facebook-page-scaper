@@ -1,20 +1,14 @@
 const models = require('alert-facebook-scraper-shared-models');
-const savePosts = (page, posts) => {
+const savePosts = async (page, posts) => {
 
-	const promises = [];
+	const records = [];
 
-	posts.forEach(post => {
-		try {
-			promises.push(savePost(page, post));
-		} catch (error) {
-			console.log("-- ERROR --")
-			console.error(error)
-			console.log(post)
-			console.log("-- ERROR --")
-		}
-	})
+	for(let post of posts) {
+		let record = await savePost(page, post)
+		records.push(record);
+	}
 
-	return Promise.all(promises)
+	return records;
 }
 
 const savePost = (page, post) => {
@@ -28,6 +22,8 @@ const savePost = (page, post) => {
 			fb_message: post.message,
 			fb_story: post.story,
 			fb_created_time: post.created_time,
+			fb_user_id: post.from.id,
+			fb_user_fullname: post.from.name,
 			parent_page_id: page.id
 		}
 	})

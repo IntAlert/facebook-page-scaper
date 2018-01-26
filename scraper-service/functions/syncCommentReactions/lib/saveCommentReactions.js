@@ -1,21 +1,14 @@
 const models = require('alert-facebook-scraper-shared-models');
 const saveReactions = async (reactions) => {
 
-	records = [];
+	let records = [];
 
 	for(let reaction of reactions) {
-		try {
-			let record = await saveReaction(reaction);
-			records.push(record);
-		} catch (error) {
-			console.log("-- ERROR --")
-			console.error(error)
-			console.log(reaction)
-			console.log("-- ERROR --")
-		}
+		let record = await saveReaction(reaction);
+		records.push(record);
 	}
 
-	return Promise.resolve(records);
+	return records;
 }
 
 const saveReaction = async (reaction) => {

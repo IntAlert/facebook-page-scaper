@@ -3,10 +3,10 @@ const FBClient = require('../../../lib/FBClient')
 const posts = [];
 
 const scrapePostsPaginated = async (page, after_cursor) => {
-	let endpoint = `${page.fb_id}/feed`;
+	let endpoint = `${page.fb_id}/feed?fields=from,message,story,created_time`;
 
 	if(after_cursor) {
-		endpoint += '?after=' + after_cursor;
+		endpoint += '&after=' + after_cursor;
 	}
 	
 	return new Promise((resolve, reject) => {

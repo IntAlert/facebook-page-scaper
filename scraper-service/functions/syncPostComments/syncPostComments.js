@@ -7,7 +7,7 @@ const markPostsAsScraped = require('./lib/markPostsAsScraped');
 module.exports.handler = async (event, context, callback) => {
 
 	try {
-		let posts = await getPosts(100);
+		let posts = await getPosts(10);
 		let comments = await scrapeComments(posts);
 		let records = await saveComments(comments);
 		console.log('Posts length: ' + posts.length);
@@ -15,6 +15,8 @@ module.exports.handler = async (event, context, callback) => {
 		
 		await markPostsAsScraped(posts)
 
+		console.log(comments);
+		
 		// // close the database connection
 		models.sequelize.close();
 		callback(null, records);

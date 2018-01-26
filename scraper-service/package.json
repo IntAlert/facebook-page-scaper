@@ -10,7 +10,9 @@
     "syncCommentSubcomments": "SLS_DEBUG=* serverless invoke local --function syncCommentSubcomments -s dev",
     "syncCommentReactions": "SLS_DEBUG=* serverless invoke local --function syncCommentReactions -s dev",
     "syncPostReactions": "SLS_DEBUG=* serverless invoke local --function syncPostReactions -s dev",
-    "syncPostDeletions": "SLS_DEBUG=* serverless invoke local --function syncPostDeletions -s dev"
+    "syncPostVisibilities": "SLS_DEBUG=* serverless invoke local --function syncPostVisibilities -s dev",
+    "syncCommentVisibilities": "SLS_DEBUG=* serverless invoke local --function syncCommentVisibilities -s dev"
+    
     
   },
   "author": "",

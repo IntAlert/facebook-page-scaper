@@ -4,7 +4,7 @@ const markPostReactionsAsScraped = async (posts) => {
 	let post_ids = posts.map(post => post.id);
 	
 	return models.Post.update({
-		deletion_status_last_scraped: Date.now()
+		visibility_last_scraped: Date.now()
 	}, {
 		where: {
 			'id': post_ids

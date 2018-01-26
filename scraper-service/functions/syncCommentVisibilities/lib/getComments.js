@@ -16,8 +16,8 @@ const getCommentsNotScraped = async (limit) => {
 
 	return models.Comment.findAll({
 		where: {
-			comments_last_scraped: null,
-			parent_comment_id: null, // no such thing as subsubcomments
+			visibility_last_scraped: null,
+			deleted: false
 		},
 		limit,
 		include: [{
@@ -31,10 +31,10 @@ const getCommentsLeastRecentlyScraped = async (limit) => {
 	
 	return models.Comment.findAll({
 		where: {
-			comments_last_scraped: {$ne: null},
-			parent_comment_id: null, // no such thing as subsubcomments
+			deleted: false,
+			visibility_last_scraped: {$ne: null},
 		},
-		order: [['comments_last_scraped', 'ASC']],
+		order: [['visibility_last_scraped', 'ASC']],
 		limit,
 		include: [{
 			model: models.Page,

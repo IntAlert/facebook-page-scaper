@@ -1,20 +1,14 @@
 const models = require('alert-facebook-scraper-shared-models');
-const saveComments = (comments) => {
+const saveComments = async (comments) => {
 
-	const promises = [];
+	const records = [];
 
-	comments.forEach(comment => {
-		try {
-			promises.push(saveComment(comment));
-		} catch (error) {
-			console.log("-- ERROR --")
-			console.error(error)
-			console.log(comment)
-			console.log("-- ERROR --")
-		}
-	})
+	for(let comment of comments) {
+		let record = await saveComment(comment);
+		records.push(record);
+	}
 
-	return Promise.all(promises)
+	return records;
 }
 
 const saveComment = (comment) => {
@@ -25,6 +19,8 @@ const saveComment = (comment) => {
 			fb_id: comment.id,
 			fb_message: comment.message,
 			fb_created_time: comment.created_time,
+			fb_user_id: comment.from.id,
+			fb_user_fullname: comment.from.name,
 			parent_comment_fb_id: comment.parent_comment_fb_id,
 			parent_comment_id: comment.parent_comment_id,
 			parent_page_id: comment.parent_page_id
