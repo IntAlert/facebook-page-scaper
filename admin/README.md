@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
+http://alert-dialogger.s3-website-eu-west-1.amazonaws.com/
+
 ## To Do:
 - create export CSV endpoint
 - make export button
@@ -19,7 +21,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 
-
+## Deploy
+```aws s3 cp ./dist s3://alert-dialogger --recursive --acl public-read --profile alert_fb_scraper```
 
 
 ## Development server

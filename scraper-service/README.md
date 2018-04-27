@@ -6,7 +6,7 @@ or
 ```npm run hello```
 
 ## Deploying
-```serverless deploy --aws-profile=personal -s prod```
+```serverless deploy --aws-profile=alert_fb_scraper -s prod```
 
 ## Getting an FB page access token
 1. get access token

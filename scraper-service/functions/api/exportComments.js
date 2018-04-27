@@ -27,8 +27,6 @@ module.exports.handler = async (event, context, callback) => {
 		order: [['fb_created_time', 'DESC']],
 	})
 
-	// close the database connection
-	models.sequelize.close();
 
 	// build CSV
 	let rows = [];
@@ -61,10 +59,14 @@ module.exports.handler = async (event, context, callback) => {
 	};
 
 	// build header
-	const headerRow = fields.values();
+	const headerRow = Object.values(fields);
+	rows.push(headerRow);
 
 	// build rows
-	for(comment of comments) {
+	comments.forEach((commentItem) => {
+
+		let comment = commentItem.get({plain: true});
+
 		// parent comment
 		let commentRow = [];
 		for (const key in fields) {
@@ -73,24 +75,31 @@ module.exports.handler = async (event, context, callback) => {
 		rows.push(commentRow);
 
 		// subcomments
-		for (subcomment of comment.Comment) {
+		for (let subcomment of comment.Comments) {
 			let subcommentRow = [];
 			for (const key in fields) {
-				commentRow.push(comment[key])
+				subcommentRow.push(subcomment[key])
 			}
-			rows.push(commentRow);
+			rows.push(subcommentRow);
 		}
-	}
+
+	})
 
 	// build response
 	const response = {
 		statusCode: 200,
 		headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true,
+			'Access-Control-Allow-Credentials': true,
+			'Content-type': 'text/csv',
+			'Content-disposition': 'attachment;filename=Comments.csv',
     },
 		body: toCSV(rows)
 	};
+
+
+	// close the database connection
+	models.sequelize.close();
 
 	callback(null, response);
 
