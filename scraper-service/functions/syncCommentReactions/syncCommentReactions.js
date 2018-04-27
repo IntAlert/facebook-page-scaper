@@ -6,8 +6,11 @@ const updateCommentReactionSummaries  = require('./lib/updateCommentReactionSumm
 const markCommentReactionsAsScraped  = require('./lib/markCommentReactionsAsScraped');
 
 
+
 module.exports.handler = async (event, context, callback) => {
 
+	models.init();
+	
 	try {
 		let comments = await getComments(5);
 		let reactions = await scrapeCommentReactions(comments);

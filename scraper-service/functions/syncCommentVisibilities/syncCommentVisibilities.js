@@ -4,8 +4,11 @@ const scrapeCommentVisibilityChanges  = require('./lib/scrapeCommentVisibilityCh
 const saveCommentVisibilityChanges  = require('./lib/saveCommentVisibilityChanges');
 const markCommentVisibilitiesAsScraped  = require('./lib/markCommentVisibilitiesAsScraped');
 
+
 module.exports.handler = async (event, context, callback) => {
 
+	models.init();
+	
 	try {
 		let comments = await getComments(5);
 		let deltas = await scrapeCommentVisibilityChanges(comments);
@@ -16,7 +19,7 @@ module.exports.handler = async (event, context, callback) => {
 		console.log('Comments length: ' + comments.length);
 
 
-		// close the database connection
+		// do not close the database connection
 		models.sequelize.close();
 		callback(null, deltas);
 	} catch (error) {

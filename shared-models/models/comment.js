@@ -28,14 +28,7 @@ module.exports = (sequelize, DataTypes) => {
 
     comments_last_scraped: DataTypes.DATE,
     reactions_last_scraped: DataTypes.DATE,
-    
 
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
 
   // Associations
@@ -49,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
 
     // Comment has reactions
     Comment.hasMany(models.comment_reactions, {foreignKey: 'comment_id', sourceKey: 'id'});
+
   };
   
   return Comment;

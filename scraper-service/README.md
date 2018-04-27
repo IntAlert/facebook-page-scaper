@@ -2,6 +2,8 @@
 
 ## Testing locally
 ```serverless invoke local --function hello -s dev```
+or
+```npm run hello```
 
 ## Deploying
 ```serverless deploy --aws-profile=personal -s prod```

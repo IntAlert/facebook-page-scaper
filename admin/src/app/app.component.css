@@ -1,0 +1,71 @@
+.container {
+	display: flex;
+}
+
+.posts {
+	width: 33%;
+	height: 100%;
+	overflow:scroll;
+	position: fixed;
+	background: #fff;
+	/* box-shadow: 2px 2px 20px #666; */
+}
+
+.posts .post {
+	padding: 10px;
+	cursor: pointer;
+	background:#eee;
+}
+.posts .post:nth-child(2n) {
+	background:#fff;
+}
+.posts .post:hover {
+	opacity: 0.8;
+}
+.posts .hidden {
+	background:pink;
+}
+
+.posts .post.selected {
+	font-weight: bold;
+	background:#333;
+	color:#fff;
+}
+
+.comments {
+	padding:1em;
+	margin-left:35%;
+	width:65%;
+	position: fixed;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.comments table {
+	width:100%;
+}
+
+.comments .table-container {
+	flex:1;
+	overflow: auto;
+}
+
+.comments .table-footer {
+	display: flex;
+}
+
+.comments .table-footer mat-form-field {
+	flex:1;
+}
+
+.comments table th,
+.comments table td {
+	max-width: 30%;
+	padding:8px;
+	word-wrap: break-word;
+}
+
+.comments .hidden {
+	background:pink;
+}

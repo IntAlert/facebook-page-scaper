@@ -7,6 +7,8 @@ const markPostReactionsAsScraped  = require('./lib/markPostReactionsAsScraped');
 
 module.exports.handler = async (event, context, callback) => {
 
+	models.init();
+	
 	try {
 		let posts = await getPosts(5);
 		let reactions = await scrapePostReactions(posts);

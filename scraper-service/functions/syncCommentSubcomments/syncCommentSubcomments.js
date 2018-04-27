@@ -6,6 +6,8 @@ const markCommentsAsScraped = require('./lib/markCommentsAsScraped');
 
 module.exports.handler = async (event, context, callback) => {
 
+	models.init();
+
 	try {
 		let comments = await getComments(10);
 		let subcomments = await scrapeSubcomments(comments);

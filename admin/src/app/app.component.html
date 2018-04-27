@@ -1,0 +1,95 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+	<div class="posts">
+		<!-- <h2>{{data.page.fb_id}}</h2>
+		<p>Last Scraped: {{data.page.last_scraped}}</p> -->
+		<div 
+			*ngFor="let post of posts" 
+			(click)="handleShowPostComments(post.id)"
+			class="post {{post.deleted ? 'hidden': ''}} {{selected_post_id == post.id ? 'selected': ''}}"
+		>
+			<p>{{post.fb_message}}</p>
+			<p>{{post.fb_created_time | date:'medium'}}</p>
+			<div *ngIf="post.deleted">
+				Deleted
+			</div>
+
+		</div>
+	</div>
+
+	<div class="comments" >
+
+		<div *ngIf="comments_loading">
+					Comments Loading...
+		</div>
+
+		<div *ngIf="!comments_loading" class="table-container">
+
+			<mat-table 
+			#table 
+			[dataSource]="commentsDataSource">
+					<!-- <mat-table #table [dataSource]="dataSource"> -->
+
+				<!--- Note that these columns can be defined in any order.
+						The actual rendered columns are set as a property on the row definition" -->
+
+			<!-- Position Column -->
+			<ng-container matColumnDef="fb_created_time">
+					<mat-header-cell 
+					mat-sort-header
+					*matHeaderCellDef> Date </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.fb_created_time}} </mat-cell>
+				</ng-container>
+
+
+				<ng-container matColumnDef="fb_user_fullname">
+					<mat-header-cell 
+					mat-sort-header
+					*matHeaderCellDef
+					> Author </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.fb_user_fullname}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="comment">
+						<mat-header-cell *matHeaderCellDef> Comment </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.comment}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="subcomment">
+						<mat-header-cell *matHeaderCellDef> Subcomment </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.subcomment}} </mat-cell>
+					</ng-container>
+		
+					<ng-container matColumnDef="fb_reactions_summary_type">
+						<mat-header-cell *matHeaderCellDef> Reaction Summary </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.fb_reactions_summary_type}} </mat-cell>
+					</ng-container>
+		
+					<ng-container matColumnDef="fb_reactions_total_count">
+							<mat-header-cell mat-sort-header *matHeaderCellDef> Reaction Total </mat-header-cell>
+							<mat-cell *matCellDef="let element"> {{element.fb_reactions_total_count}} </mat-cell>
+					</ng-container>
+
+		
+					<ng-container matColumnDef="is_hidden_detected">
+							<mat-header-cell mat-sort-header *matHeaderCellDef> Hidden </mat-header-cell>
+							<mat-cell *matCellDef="let element"> {{element.is_hidden_detected}} </mat-cell>
+					</ng-container>
+
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+			</mat-table>
+		</div>
+
+		<div *ngIf="!comments_loading" class="table-footer">
+			<mat-form-field flex>
+				<input matInput (keyup)="applyCommentFilter($event.target.value)" placeholder="Filter">
+			</mat-form-field>
+
+				<button (click)="exportFilteredResults($event.target.value)" mat-button color="primary">Export</button>
+
+		</div>
+
+	</div>
+</div>

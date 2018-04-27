@@ -16,6 +16,7 @@ provider:
   runtime: nodejs6.10
   stage: prod
   region: eu-west-1
+  memorySize: 3008
   timeout: 120
   environment: ${file(./env.json):${opt:stage}}
 
@@ -25,42 +26,57 @@ functions:
   syncFeed:
     handler: functions/syncFeed/syncFeed.handler
     events:
-      - schedule: rate(15 minutes)
+      - schedule: rate(10 minutes)
 
   syncPostComments:
     handler: functions/syncPostComments/syncPostComments.handler
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(3 minutes)
 
   syncCommentSubcomments:
     handler: functions/syncCommentSubcomments/syncCommentSubcomments.handler
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(3 minutes)
 
   syncCommentReactions:
     handler: functions/syncCommentReactions/syncCommentReactions.handler
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(3 minutes)
   
   syncPostReactions:
     handler: functions/syncPostReactions/syncPostReactions.handler
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(3 minutes)
 
   syncPostVisibilities:
     handler: functions/syncPostVisibilities/syncPostVisibilities.handler
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(3 minutes)
   
   syncCommentVisibilities:
     handler: functions/syncCommentVisibilities/syncCommentVisibilities.handler
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(3 minutes)
 
 ## API
-  getFeed:
-    handler: functions/api/getFeed.handler
+  getPosts:
+    handler: functions/api/getPosts.handler
     events:
       - http:
-          path: api/getFeed
+          path: api/getPosts
           method: get
+          cors: true
+  getComments:
+    handler: functions/api/getComments.handler
+    events:
+      - http:
+          path: api/getComments
+          method: get
+          cors: true
+  exportComments:
+    handler: functions/api/exportComments.handler
+    events:
+      - http:
+          path: api/exportComments
+          method: get
+          cors: true

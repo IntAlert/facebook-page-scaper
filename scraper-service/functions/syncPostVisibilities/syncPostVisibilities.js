@@ -6,6 +6,7 @@ const markPostVisibilitiesAsScraped  = require('./lib/markPostVisibilitiesAsScra
 
 module.exports.handler = async (event, context, callback) => {
 
+	models.init();
 	try {
 		let posts = await getPosts(5);
 		let deltas = await scrapePostVisibilityChanges(posts);
@@ -14,7 +15,6 @@ module.exports.handler = async (event, context, callback) => {
 		await markPostVisibilitiesAsScraped(posts);
 
 		console.log('Posts length: ' + posts.length);
-
 
 		// close the database connection
 		models.sequelize.close();

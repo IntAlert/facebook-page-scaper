@@ -5,6 +5,9 @@ const getPage  = require('./lib/getPage');
 const markPageAsScraped  = require('./lib/markPageAsScraped');
 
 module.exports.handler = async (event, context, callback) => {
+
+	models.init();
+
 	try {
 		let page = await getPage();
 		let posts = await scrapePosts(page);

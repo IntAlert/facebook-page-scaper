@@ -11,9 +11,11 @@
     "syncCommentReactions": "SLS_DEBUG=* serverless invoke local --function syncCommentReactions -s dev",
     "syncPostReactions": "SLS_DEBUG=* serverless invoke local --function syncPostReactions -s dev",
     "syncPostVisibilities": "SLS_DEBUG=* serverless invoke local --function syncPostVisibilities -s dev",
-    "syncCommentVisibilities": "SLS_DEBUG=* serverless invoke local --function syncCommentVisibilities -s dev"
-    
-    
+    "syncCommentVisibilities": "SLS_DEBUG=* serverless invoke local --function syncCommentVisibilities -s dev",
+    "getFeed": "SLS_DEBUG=* serverless invoke local --function getFeed -s dev",
+    "getPosts": "SLS_DEBUG=* serverless invoke local --function getPosts -s dev",
+    "getComments": "SLS_DEBUG=* serverless invoke local --function getComments -s dev --path test_data/getComments.json",
+    "exportComments": "SLS_DEBUG=* serverless invoke local --function exportComments -s dev --path test_data/exportComments.json"
   },
   "author": "",
   "license": "MIT",
@@ -34,6 +36,7 @@
   },
   "dependencies": {
     "alert-facebook-scraper-shared-models": "file:///Users/asmt3/Sites/clients/intalert/facebook-page-scaper/shared-models",
+    "array-to-csv": "^1.0.1",
     "babel-runtime": "^6.26.0",
     "fb": "^2.0.0",
     "jest": "^21.2.1",

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   // //     }
   //   }
   // }
-);
+  );
 
   // Associations
   Page.associate = function (models) {

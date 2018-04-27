@@ -3,13 +3,23 @@ const models = require('alert-facebook-scraper-shared-models');
 
 module.exports.handler = async (event, context, callback) => {
 
-	let page = await models.Page.findOne({
+	models.init();
+
+	let page_id = 1;
+
+	let page = await models.Page.findOne({ //here
 		where: {
-			id: 2
+			id: page_id
 		},
-		include: [{
-			model: models.Post,
-			include: [
+	})
+
+	let posts = await models.Post.findAll({ //here
+		where: {
+			parent_page_id: page_id
+		},
+		order: [['fb_created_time', 'DESC']],
+		limit: 5,
+		include: [
 				{
 					model: models.post_reactions
 				},
@@ -30,7 +40,6 @@ module.exports.handler = async (event, context, callback) => {
 					]
 				},
 			]
-		}]
 	})
 
 	// close the database connection
@@ -39,7 +48,11 @@ module.exports.handler = async (event, context, callback) => {
 	// build response
 	const response = {
 		statusCode: 200,
-		body: JSON.stringify({page})
+		headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    },
+		body: JSON.stringify({page, posts})
 	};
 
 	callback(null, response);
