@@ -2,13 +2,17 @@ const models = require('alert-facebook-scraper-shared-models');
 
 const savePostVisibilityChanges = async (deltas) => {
 	
-	if (deltas.deleted_post_ids.length)	await savePostDeletions(deltas.deleted_post_ids);
-	if (deltas.is_hidden_post_ids.length)	await savePostHiddens(deltas.is_hidden_post_ids);
-	if (deltas.is_unhidden_post_ids.length)	await savePostUnhiddens(deltas.is_unhidden_post_ids);
+	await savePostDeletions(deltas.deleted_post_ids);
+	await savePostUndeletions(deltas.undeleted_post_ids);
+	
+	await savePostHiddens(deltas.is_hidden_post_ids);
+	await savePostUnhiddens(deltas.is_unhidden_post_ids);
 
 }
 
 const savePostDeletions = async (deleted_post_ids) => {
+
+	if (!deleted_post_ids.length) return;
 	
 	return models.Post.update({
 		deleted: true,
@@ -20,7 +24,23 @@ const savePostDeletions = async (deleted_post_ids) => {
 	})
 }
 
+const savePostUndeletions = async (undeleted_post_ids) => {
+
+	if (!undeleted_post_ids.length) return;
+	
+	return models.Post.update({
+		deleted: false,
+		deletion_detected: Date.now()
+	}, {
+		where: {
+			'id': undeleted_post_ids
+		}
+	})
+}
+
 const savePostHiddens = async (is_hidden_post_ids) => {
+
+	if (!is_hidden_post_ids.length) return;
 	
 	return models.Post.update({
 		is_hidden: true,
@@ -33,6 +53,8 @@ const savePostHiddens = async (is_hidden_post_ids) => {
 }
 
 const savePostUnhiddens = async (is_unhidden_post_ids) => {
+
+	if (!is_unhidden_post_ids.length) return;
 	
 	return models.Post.update({
 		is_hidden: true,

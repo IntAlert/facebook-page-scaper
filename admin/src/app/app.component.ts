@@ -14,8 +14,9 @@ export class AppComponent {
 
   posts = [];
   comments = [];
-  posts_url = 'https://vd6oenx9w6.execute-api.eu-west-1.amazonaws.com/prod/api/getPosts';
-  comments_url_base = 'https://vd6oenx9w6.execute-api.eu-west-1.amazonaws.com/prod/api/getComments?post_id=';
+  posts_url = 'https://yqym4pbnsh.execute-api.eu-west-1.amazonaws.com/prod/api/getPosts';
+  comments_url_base = 'https://yqym4pbnsh.execute-api.eu-west-1.amazonaws.com/prod/api/getComments?post_id=';
+  comments_export_url_base = 'https://yqym4pbnsh.execute-api.eu-west-1.amazonaws.com/prod/api/exportComments?post_id=';
   comments_loading = false;
   selected_post_id = false;
 
@@ -27,7 +28,6 @@ export class AppComponent {
     'fb_user_fullname',
     'comment',
     'subcomment',
-    'fb_reactions_summary_type',
     'fb_reactions_total_count',
     'is_hidden_detected'
   ];
@@ -47,7 +47,7 @@ export class AppComponent {
   }
 
   public exportFilteredResults() {
-    console.log(this.commentsDataSource.flatten());
+    window.location.href=this.comments_export_url_base + this.selected_post_id;
   }
 
   public handleShowPostComments(post_id) {
@@ -66,7 +66,7 @@ export class AppComponent {
           commentsFlattened.push(comment);
 
           // add subcomments
-          for (const subcomment of comment.Comments) {
+          for (const subcomment of comment.Subcomment) {
             // console.log(subcomment);
             subcomment.subcomment = subcomment.fb_message;
             commentsFlattened.push(subcomment);

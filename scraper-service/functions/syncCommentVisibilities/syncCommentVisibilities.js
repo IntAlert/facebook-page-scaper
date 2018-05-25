@@ -16,7 +16,9 @@ module.exports.handler = async (event, context, callback) => {
 		await saveCommentVisibilityChanges(deltas);
 		await markCommentVisibilitiesAsScraped(comments);
 
+		let comment_ids = comments.map(comment => comment.id)
 		console.log('Comments length: ' + comments.length);
+		console.log('Comment IDs: ' + comment_ids.join(', '));
 
 
 		// do not close the database connection

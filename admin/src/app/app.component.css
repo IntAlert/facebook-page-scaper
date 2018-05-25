@@ -47,12 +47,14 @@
 }
 
 .comments .table-container {
-	flex:1;
+	flex:5;
 	overflow: auto;
 }
 
 .comments .table-footer {
 	display: flex;
+	flex:1;
+	justify-content: flex-end;
 }
 
 .comments .table-footer mat-form-field {

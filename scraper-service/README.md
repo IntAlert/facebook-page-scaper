@@ -26,9 +26,7 @@ or
 
 
 TODO:
-- add user a data to comments
 - ensure access token is not expired when detecting deletions
 - add tagging
 - API: all posts
-
 

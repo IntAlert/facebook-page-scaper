@@ -5,24 +5,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 http://alert-dialogger.s3-website-eu-west-1.amazonaws.com/
 
 ## To Do:
-- create export CSV endpoint
-- make export button
-- Reation summary always NONE?
 - show that deleted
-- link profile pics
 - post reaction summary
 - post export
 - get reach?
 - password
 
+
 ## Nice to have
 - Add tagging
 
-
-
-
 ## Deploy
-```aws s3 cp ./dist s3://alert-dialogger --recursive --acl public-read --profile alert_fb_scraper```
+```ng build; aws s3 cp ./dist s3://alert-dialogger --recursive --acl public-read --profile alert_fb_scraper```
 
 
 ## Development server

@@ -38,7 +38,11 @@
 					<mat-header-cell 
 					mat-sort-header
 					*matHeaderCellDef> Date </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.fb_created_time}} </mat-cell>
+					<mat-cell *matCellDef="let element"> 
+						<a href="https://www.facebook.com/{{element.fb_id}}" target="_blank">
+							{{element.fb_created_time}}
+						</a>
+					</mat-cell>
 				</ng-container>
 
 
@@ -60,11 +64,6 @@
 						<mat-cell *matCellDef="let element"> {{element.subcomment}} </mat-cell>
 					</ng-container>
 		
-					<ng-container matColumnDef="fb_reactions_summary_type">
-						<mat-header-cell *matHeaderCellDef> Reaction Summary </mat-header-cell>
-						<mat-cell *matCellDef="let element"> {{element.fb_reactions_summary_type}} </mat-cell>
-					</ng-container>
-		
 					<ng-container matColumnDef="fb_reactions_total_count">
 							<mat-header-cell mat-sort-header *matHeaderCellDef> Reaction Total </mat-header-cell>
 							<mat-cell *matCellDef="let element"> {{element.fb_reactions_total_count}} </mat-cell>
@@ -83,11 +82,12 @@
 		</div>
 
 		<div *ngIf="!comments_loading" class="table-footer">
-			<mat-form-field flex>
+			<!-- <mat-form-field flex>
 				<input matInput (keyup)="applyCommentFilter($event.target.value)" placeholder="Filter">
-			</mat-form-field>
+			</mat-form-field> -->
+				<div flex></div>
 
-				<button (click)="exportFilteredResults($event.target.value)" mat-button color="primary">Export</button>
+				<button (click)="exportFilteredResults($event.target.value)" mat-button color="primary">Export Comments</button>
 
 		</div>
 

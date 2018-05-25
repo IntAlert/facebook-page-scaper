@@ -18,6 +18,7 @@ module.exports.handler = async (event, context, callback) => {
 			},
 			{
 				model: models.Comment,
+				as: 'Subcomment',
 				include: [
 					{
 						model: models.comment_reactions

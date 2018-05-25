@@ -14,7 +14,10 @@ module.exports.handler = async (event, context, callback) => {
 		await savePostVisibilityChanges(deltas);
 		await markPostVisibilitiesAsScraped(posts);
 
+
+		let post_ids = posts.map(post => post.id)
 		console.log('Posts length: ' + posts.length);
+		console.log('Post IDs: ' + post_ids.join(', '));
 
 		// close the database connection
 		models.sequelize.close();

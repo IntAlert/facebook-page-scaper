@@ -3,7 +3,6 @@ const FBClient = require('../../../lib/FBClient')
 const scrapeComment = async (comment) => {
 	let endpoint = `${comment.fb_id}?fields=is_hidden`;
 
-	console.log(endpoint);
 	return new Promise((resolve, reject) => {
 		FBClient.setAccessToken(comment.Page.access_token);
 		FBClient.api(endpoint, (res) => {
@@ -23,9 +22,12 @@ const scrapeCommentVisibilityChange = async (comment) => {
 	let visibilityDelta = {}
 	try {
 		let record = await scrapeComment(comment);
-		// got this far: not deleted
 
-		console.log(record)
+		// got this far: not deleted 
+		// (scrapeComment would have thrown an error if deleted)
+		if(comment.deleted) {
+			visibilityDelta.deleted = false;
+		}
 
 		// has is_hidden changed from what we already know
 		if (comment.is_hidden != record.is_hidden) {
@@ -52,15 +54,24 @@ const scrapeCommentVisibilityChange = async (comment) => {
 const scrapeCommentVisibilityChanges = async(comments) => {
 	let deltas = {
 		deleted_comment_ids: [],
+		undeleted_comment_ids: [],
 		is_hidden_comment_ids: [],
 		is_unhidden_comment_ids: []
 	}
 
 	for(let comment of comments) {
 		let delta = await scrapeCommentVisibilityChange(comment);
+
+		// Deletedness
 		if (delta.deleted) {
 			deltas.deleted_comment_ids.push(comment.id);
 		}
+
+		if (delta.deleted === false) {
+			deltas.undeleted_comment_ids.push(comment.id);
+		}
+
+		// Hiddenness
 		if (delta.is_hidden) {
 			deltas.is_hidden_comment_ids.push(comment.id);
 		}

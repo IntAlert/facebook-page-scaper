@@ -39,7 +39,11 @@ module.exports = (sequelize, DataTypes) => {
     Comment.belongsTo(models.Page, {foreignKey: 'parent_page_id', targetKey: 'id'});
 
     // Comment has subcomments
-    Comment.hasMany(models.Comment, {foreignKey: 'parent_comment_id', sourceKey: 'id'});
+    Comment.hasMany(models.Comment, {
+      foreignKey: 'parent_comment_id', 
+      sourceKey: 'id',
+      as: 'Subcomment'
+    });
 
     // Comment has reactions
     Comment.hasMany(models.comment_reactions, {foreignKey: 'comment_id', sourceKey: 'id'});
